@@ -5,6 +5,14 @@
 package com.mycompany.airline_proyecto;
 
 import java.awt.Color;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,6 +26,14 @@ public class VerTicket extends javax.swing.JInternalFrame {
     public VerTicket() {
         initComponents();
         this.getContentPane().setBackground(new Color(30, 144, 255));
+        Nombre.setText("");
+                Apellido.setText("");
+                Genero.setText("");
+                Llegada.setText("");
+                Salida.setText("");
+                Contacto.setText("");
+                NombreVuelo.setText("");
+                
     }
 
     /**
@@ -39,16 +55,16 @@ public class VerTicket extends javax.swing.JInternalFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
+        Apellido = new javax.swing.JLabel();
+        Llegada = new javax.swing.JLabel();
+        Genero = new javax.swing.JLabel();
+        Salida = new javax.swing.JLabel();
+        Nombre = new javax.swing.JLabel();
+        Contacto = new javax.swing.JLabel();
+        NombreVuelo = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        ticketid = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
 
         setClosable(true);
@@ -81,26 +97,26 @@ public class VerTicket extends javax.swing.JInternalFrame {
         jLabel9.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
         jLabel9.setText("NOMBRE VUELO:");
 
-        jLabel11.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
-        jLabel11.setText("jLabel11");
+        Apellido.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
+        Apellido.setText("jLabel11");
 
-        jLabel12.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
-        jLabel12.setText("jLabel11");
+        Llegada.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
+        Llegada.setText("jLabel11");
 
-        jLabel13.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
-        jLabel13.setText("jLabel11");
+        Genero.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
+        Genero.setText("jLabel11");
 
-        jLabel14.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
-        jLabel14.setText("jLabel11");
+        Salida.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
+        Salida.setText("jLabel11");
 
-        jLabel15.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
-        jLabel15.setText("jLabel11");
+        Nombre.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
+        Nombre.setText("jLabel11");
 
-        jLabel16.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
-        jLabel16.setText("jLabel11");
+        Contacto.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
+        Contacto.setText("jLabel11");
 
-        jLabel17.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
-        jLabel17.setText("jLabel11");
+        NombreVuelo.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
+        NombreVuelo.setText("jLabel11");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -118,29 +134,29 @@ public class VerTicket extends javax.swing.JInternalFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
-                                    .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(Apellido, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                                    .addComponent(Genero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(134, 134, 134)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addComponent(jLabel10)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(Contacto, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                         .addGroup(jPanel2Layout.createSequentialGroup()
                                             .addComponent(jLabel7)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(Salida, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGroup(jPanel2Layout.createSequentialGroup()
                                             .addComponent(jLabel8)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                            .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addComponent(Llegada, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addComponent(Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(195, 195, 195)
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(NombreVuelo, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 50, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -150,24 +166,24 @@ public class VerTicket extends javax.swing.JInternalFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jLabel8)
-                    .addComponent(jLabel12)
-                    .addComponent(jLabel15))
+                    .addComponent(Llegada)
+                    .addComponent(Nombre))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jLabel7)
-                    .addComponent(jLabel11)
-                    .addComponent(jLabel14))
+                    .addComponent(Apellido)
+                    .addComponent(Salida))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jLabel10)
-                    .addComponent(jLabel13)
-                    .addComponent(jLabel16))
+                    .addComponent(Genero)
+                    .addComponent(Contacto))
                 .addGap(46, 46, 46)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(jLabel17))
+                    .addComponent(NombreVuelo))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
 
@@ -177,6 +193,11 @@ public class VerTicket extends javax.swing.JInternalFrame {
         jLabel1.setText("TICKET ID:");
 
         jButton1.setText("BUSCAR");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -188,7 +209,7 @@ public class VerTicket extends javax.swing.JInternalFrame {
                         .addGap(95, 95, 95)
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(ticketid, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(201, 201, 201)
                         .addComponent(jButton1)))
@@ -200,7 +221,7 @@ public class VerTicket extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ticketid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -244,18 +265,67 @@ public class VerTicket extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            // TODO add your handling code here:
+            String vueloid = "";
+            String ticket = ticketid.getText();
+            Connection con;
+            PreparedStatement pre;
+            Class.forName("com.mysql.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost/airline_proyecto","root","Luftwaffe1939");
+            
+            pre = con.prepareStatement("select * from ticket where TicketID = ?");
+            pre.setString(1, ticket);
+            
+            ResultSet rs = pre.executeQuery();
+            
+            if(rs.next()){
+                Nombre.setText(rs.getString("Nombre"));
+                Apellido.setText(rs.getString("Apellido"));
+                Genero.setText(rs.getString("Genero"));
+                Llegada.setText(rs.getString("Llegada"));
+                Salida.setText(rs.getString("Salida"));
+                Contacto.setText(rs.getString("Contacto"));
+                vueloid = rs.getString("VueloID");
+            }else{
+                JOptionPane.showMessageDialog(null, "El ticket no existe");
+                return;
+            }
+            
+            pre = con.prepareStatement("select * from vuelo where VueloID = ?");
+            pre.setString(1, vueloid);
+            ResultSet ra = pre.executeQuery();
+            
+            if(ra.next()){
+                NombreVuelo.setText(ra.getString("NombreVuelo"));
+            }else{
+                JOptionPane.showMessageDialog(null, "El nombre del vuelo no existe");
+                
+            }
+            
+            
+            
+            
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(VerTicket.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(VerTicket.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Apellido;
+    private javax.swing.JLabel Contacto;
+    private javax.swing.JLabel Genero;
+    private javax.swing.JLabel Llegada;
+    private javax.swing.JLabel Nombre;
+    private javax.swing.JLabel NombreVuelo;
+    private javax.swing.JLabel Salida;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -266,6 +336,6 @@ public class VerTicket extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField ticketid;
     // End of variables declaration//GEN-END:variables
 }

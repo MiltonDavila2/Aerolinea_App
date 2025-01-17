@@ -32,6 +32,7 @@ public class ReservarVuelo extends javax.swing.JInternalFrame {
          this.getContentPane().setBackground(new Color(30, 144, 255));
          AutoID();
     }
+    String flightId;
     
     
     public void AutoID(){
@@ -99,16 +100,14 @@ public class ReservarVuelo extends javax.swing.JInternalFrame {
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
         CLIENTEID = new javax.swing.JTextField();
         Nombre = new javax.swing.JTextField();
         Apellido = new javax.swing.JTextField();
         Contacto = new javax.swing.JTextField();
         Genero = new javax.swing.JTextField();
         Precio = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
-        jTextField9 = new javax.swing.JTextField();
+        totaltickets = new javax.swing.JTextField();
+        Preciototal = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
@@ -191,6 +190,11 @@ public class ReservarVuelo extends javax.swing.JInternalFrame {
                 "Vuelo ID", "Nombre", "Llegada", "Salida", "Duracion", "Asientos", "Precio", "Fecha"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jLabel4.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
@@ -215,8 +219,6 @@ public class ReservarVuelo extends javax.swing.JInternalFrame {
         jLabel13.setText("Total de tickets:");
 
         jLabel14.setText("Precio total:");
-
-        jLabel15.setText("Descuento:");
 
         CLIENTEID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -244,6 +246,11 @@ public class ReservarVuelo extends javax.swing.JInternalFrame {
         });
 
         jButton3.setText("CALCULAR");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("RESERVAR");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -270,14 +277,10 @@ public class ReservarVuelo extends javax.swing.JInternalFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel14)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel15)
+                                .addGap(76, 76, 76)
+                                .addComponent(jButton4)
                                 .addGap(18, 18, 18)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jButton4)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jButton5))
-                                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jButton5))
                             .addComponent(jLabel12)
                             .addComponent(jLabel11)
                             .addComponent(jLabel10)
@@ -292,7 +295,7 @@ public class ReservarVuelo extends javax.swing.JInternalFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Preciototal, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel13)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -302,7 +305,7 @@ public class ReservarVuelo extends javax.swing.JInternalFrame {
                                     .addComponent(Contacto)
                                     .addComponent(Genero)
                                     .addComponent(Precio)
-                                    .addComponent(jTextField7, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE))))
+                                    .addComponent(totaltickets, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton3)))
                 .addGap(0, 16, Short.MAX_VALUE))
@@ -338,17 +341,13 @@ public class ReservarVuelo extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(totaltickets, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3))
                 .addGap(30, 30, 30)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel15)
-                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                    .addComponent(Preciototal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton4)
                     .addComponent(jButton5))
@@ -414,7 +413,43 @@ public class ReservarVuelo extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_NombreActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            String clientid = CLIENTEID.getText();
+            String nombre = Nombre.getText();
+            String apellido = Apellido.getText();
+            String contacto = Contacto.getText();
+            String genero = Genero.getText();
+            String llegada = Destino.getSelectedItem().toString();
+            String salida = Salida.getSelectedItem().toString();
+            String ticketid = IDTicket.getText();
+            
+            
+            Connection con;
+            PreparedStatement pre;
+            Class.forName("com.mysql.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost/airline_proyecto","root","Luftwaffe1939");
+            
+            pre = con.prepareStatement("Insert into ticket(TicketID, VueloID,ClienteID,Llegada,Salida,Nombre,Apellido,Genero,Contacto) values (?,?,?,?,?,?,?,?,?)");
+            pre.setString(1, ticketid);
+            pre.setString(2, flightId);
+            pre.setString(3, clientid);
+            pre.setString(4, llegada);
+            pre.setString(5, salida);
+            pre.setString(6, nombre);
+            pre.setString(7, apellido);
+            pre.setString(8, genero);
+            pre.setString(9, contacto);
+            
+            pre.executeUpdate();
+            JOptionPane.showMessageDialog(null, "El ticket ha sido reservado con exito");
+            
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ReservarVuelo.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ReservarVuelo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -487,6 +522,8 @@ public class ReservarVuelo extends javax.swing.JInternalFrame {
                 Contacto.setText(rs.getString("Contacto"));
                 Genero.setText(rs.getString("Genero"));
                 
+                
+                
             }else{
                 JOptionPane.showMessageDialog(null, "El usuario no existe");
             }
@@ -501,6 +538,42 @@ public class ReservarVuelo extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ContactoActionPerformed
 
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        try {
+            // TODO add your handling code here:
+            int col=0;
+            int row = jTable1.getSelectedRow();
+            flightId=jTable1.getModel().getValueAt(row, col).toString();
+            Connection con;
+            PreparedStatement pre;
+            Class.forName("com.mysql.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost/airline_proyecto","root","Luftwaffe1939");
+            
+            pre = con.prepareStatement("Select Precio from vuelo where VueloID = ?");
+            pre.setString(1,flightId);
+            ResultSet rs = pre.executeQuery();
+            
+            rs.next();
+            Precio.setText(rs.getString("Precio"));
+            
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ReservarVuelo.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ReservarVuelo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        int precio = Integer.parseInt(Precio.getText());
+        int NTickets = Integer.parseInt(totaltickets.getText());
+        
+        int ans = precio*NTickets;
+        Preciototal.setText(String.valueOf(ans));
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Apellido;
@@ -511,6 +584,7 @@ public class ReservarVuelo extends javax.swing.JInternalFrame {
     private javax.swing.JLabel IDTicket;
     private javax.swing.JTextField Nombre;
     private javax.swing.JTextField Precio;
+    private javax.swing.JTextField Preciototal;
     private javax.swing.JComboBox<String> Salida;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -523,7 +597,6 @@ public class ReservarVuelo extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -535,8 +608,6 @@ public class ReservarVuelo extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
+    private javax.swing.JTextField totaltickets;
     // End of variables declaration//GEN-END:variables
 }
